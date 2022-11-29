@@ -1,42 +1,70 @@
-import { useFormik } from 'formik'
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom"
+import { useFormik } from "formik"
+import { Field } from "../Field"
 
-export const SignupForm = () => {
-
+export const SignUpForm = ({
+ handleSubmit,
+ handleChange,
+ handleBlur,
+ isSubmitting,
+ values,
+ errors,
+}) => {
     const formik = useFormik({
-        initialValues: {
-            email: '',
-            username: '',
-            password: '',
+        initialValues:{
+            email:"",
+            password:"",
+            confirmPassword: ""
         },
-        onsubmit: values => {
+        onSubmit: values => {
             console.log(values);
-        },
-    });
+        }
+    })
 
-    return <div className="m-28 grid justify-center">
+    return( 
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto h-full flex flex-col justify-center">
+        <h3 className="text-lg text-center">Sign Up</h3>
+        <div className="space-y-4">
 
-        <form onsubmit={formik.handleSubmit}>
+          <Field
+            label="Email"
+            type="text"
+            name="email"
+            value={values.email}
+            placeholder="your@email"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            errorMessage={errors.email}
+          />
+          <Field
+            label="Password"
+            type="password"
+            name="password"
+            value={values.password}
+            placeholder="your password"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            errorMessage={errors.password}
+          />
 
-        <div className='m-2'>
-            <h4 className="text-center text-2xl m-2">Sign Up</h4>
-            <p className='text-center'>Already have a Marvel account? <Link to='/signin' className='underline underline-offset-1 text-blue-500 '>Sign In</Link></p>
+          <Field
+            label="Confirm Password"
+            type="password"
+            name="password"
+            value={values.email}
+            placeholder="confirm password"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            errorMessage={errors.password}
+          />
+
+          <button
+            type="submit"
+            className="text-white bg-red-700 px-4 py-4 rounded-lg w-full"
+          >
+            Sign in
+          </button>
         </div>
-
-        <div className="grid gap-3">
-
-            <label>Email</label>
-            <input id='Email' type="email" name="email" onChange={formik.handleChange} value={formik.values.email} className="p-2 w-96 h-9 border-black border-2"/>
-
-            <label>Username</label>
-            <input id='Username' type="text" name="username" onChange={formik.handleChange}  value={formik.values.username} className="p-2 w-96 h-9 border-black border-2"/>
-
-            <label>Password</label>
-            <input id='Password' type="password" name="password" onChange={formik.handleChange}  value={formik.values.password} className="p-2 w-96 h-9 border-black border-2"/>
-
-            <button type='submit' className="bg-red-700 h-10 rounded text-white">Sign Up</button>
-           
-        </div>
-        </form>
-    </div>
+      </form>
+    )
 }
