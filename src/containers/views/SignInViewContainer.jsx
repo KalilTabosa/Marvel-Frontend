@@ -1,22 +1,15 @@
-import { SigninForm } from "../../components/SignInForm/singInForm"
-import { HeaderNav } from "../../components/HeaderNav"
-import { View } from "../../components/View"
-import { useSignInForm } from "../../components/SignInForm/useSignInForm"
+import { SignInView } from "../../components/SignInView";
+import { useSignInForm } from "../../components/SignInForm/useSignInForm";
+import { useFetchApi } from "../../hooks/useFetchApi";
 
 export const SignInViewContainer = () => {
-
-    const form = useSignInForm({
-        onSubmit: (values) => {
-            console.log("sign in form values", values);
-        }
-    });
-    
-    return(
-        <View>
-            <SigninForm {...form} />
-            <HeaderNav />
-        </View>
-        
-
-    )
-}
+  const { startFetch } = useFetchApi("/auth/signin", "POST");
+  const form = useSignInForm({
+    onSubmit: (values) => {
+      console.log(values);
+      startFetch(JSON.stringify(values));
+      console.log("sign in form values", values);
+    },
+  });
+  return <SignInView formProps={form} />;
+};

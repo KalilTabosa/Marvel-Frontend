@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import { useFormik } from "formik"
 import { Field } from "../Field"
 
@@ -19,9 +18,6 @@ export const SigninForm = ({
             console.log(values);
         }
     })
-
-
-
 
     return( 
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto h-full flex flex-col justify-center">

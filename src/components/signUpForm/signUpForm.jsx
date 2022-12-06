@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import { useFormik } from "formik"
 import { Field } from "../Field"
 
@@ -62,7 +61,7 @@ export const SignUpForm = ({
             type="submit"
             className="text-white bg-red-700 px-4 py-4 rounded-lg w-full"
           >
-            Sign in
+            Sign Up
           </button>
         </div>
       </form>

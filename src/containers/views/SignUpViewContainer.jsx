@@ -1,7 +1,7 @@
 import { HeaderNav } from "../../components/HeaderNav"
 import { SignUpForm } from "../../components/SignUpForm/signUpForm"
-import { View } from "../../components/View"
 import { useSignUpForm } from "../../components/SignUpForm/useSignUpForm"
+import { SignUpView } from "../../components/SignUpView"
 
 export const SignUpViewContainer = () => {
 
@@ -13,10 +13,7 @@ export const SignUpViewContainer = () => {
 
 
     return(
-        <View>
-        <HeaderNav />
-        <SignUpForm  {...form} />
-        </View>
+        <SignUpView formProps={form}/>
     )
     
 }
