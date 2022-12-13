@@ -11,6 +11,7 @@ export const SignUpForm = ({
 }) => {
     const formik = useFormik({
         initialValues:{
+            name:"",
             email:"",
             password:"",
             confirmPassword: ""
@@ -24,6 +25,17 @@ export const SignUpForm = ({
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto h-full flex flex-col justify-center">
         <h3 className="text-lg text-center">Sign Up</h3>
         <div className="space-y-4">
+
+        <Field
+            label="Name"
+            type="text"
+            name="name"
+            value={values.name}
+            placeholder="your name"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            errorMessage={errors.name}
+          />
 
           <Field
             label="Email"
@@ -49,7 +61,7 @@ export const SignUpForm = ({
           <Field
             label="Confirm Password"
             type="password"
-            name="password"
+            name="confirmPassword"
             value={values.confirmPassword}
             placeholder="confirm password"
             onChange={handleChange}

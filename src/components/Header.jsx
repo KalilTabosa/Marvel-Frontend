@@ -1,7 +1,10 @@
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import { HeaderNav } from "./HeaderNav";
+import { useAuthContext } from "../contexts/Auth";
 
 export const Header = ({ onOpenSidebar }) => {
+  const [auth, setAuth] = useAuthContext()
+
   return (
     <header className="bg-red-800 h-16 flex items-center px-4 justify-between">
       <h1 className="text-white uppercase font-semibold">Marvel</h1>

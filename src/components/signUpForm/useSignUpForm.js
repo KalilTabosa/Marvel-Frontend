@@ -10,7 +10,14 @@ const Schema = Yup.object({
         .required("Password is required") ,
     confirmPassword: Yup.string()
         .min(4,"Password must be at least 4 characters")
-        .required("Password is required") 
+        .required("Password confirmation is required")
+        .when("password", {
+            is: (val) => Boolean(val?.length),
+            then: Yup.string().oneOf(
+                [Yup.ref("password")],
+                "Both password need to be the same"
+            )
+        }) 
 });
 
 export const useSignUpForm = ({onSubmit}) => {
